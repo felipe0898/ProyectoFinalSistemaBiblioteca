@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Nuevo Préstamo</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+     <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1 class="mt-5" th:text="${prestamo.id} == null ? 'Nuevo prestamo' : 'Editar Prestamo'"></h1>
+    </header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">Inicio</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/libros">Libros</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/autores">Autores</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/usuarios">Usuarios</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/prestamos">Préstamos</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <form th:action="@{/prestamos/guardar}" th:object="${prestamo}" method="post">
+            <input type="hidden" th:if="${prestamo.id != null}" th:field="*{id}" />
+            <div class="form-group">
+                <label for="usuario">Usuario</label>
+                <select id="usuario" name="idUsuario" class="form-control" th:field="*{idUsuario}">
+                    <option th:each="u : ${usuarios}" th:value="${u.id}" th:text="${u.username}">Username</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="libro">Libro</label>
+                <select id="libro" name="idLibro" class="form-control" th:field="*{idLibro}">
+                    <option th:each="l : ${libros}" th:value="${l.id}" th:text="${l.titulo}">Título</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="fechaPrestamo">Fecha de Préstamo</label>
+                <input type="text" id="fechaPrestamo" class="form-control" th:field="*{fechaPrestamo}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="fechaDevolucion">Fecha de Devolución</label>
+                <input type="text" id="fechaDevolucion" class="form-control" th:field="*{fechaEntrega}" readonly>
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" id="entregado" class="form-check-input" th:field="*{entregado}">
+                <label for="entregado" class="form-check-label">Entregado</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a href="/prestamos" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+    <br>
+    <footer class="footer mt-auto py-3 bg-dark text-white text-center">
+        <div class="container">
+            <span>© 2024 Biblioteca Digital</span>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var today = new Date().toISOString().split('T')[0];
+            document.getElementById('fechaPrestamo').value = today;
+
+            var sevenDaysFromNow = new Date();
+            sevenDaysFromNow.setDate(sevenDaysFromNow.getDate() + 7);
+            var sevenDays = sevenDaysFromNow.toISOString().split('T')[0];
+            document.getElementById('fechaDevolucion').value = sevenDays;
+        });
+    </script>
+</body>
+</html>

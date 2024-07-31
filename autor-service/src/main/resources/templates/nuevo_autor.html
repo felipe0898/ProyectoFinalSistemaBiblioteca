@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuevo Autor</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+      <h1 th:text="${autor.id} == null ? 'Nuevo Autor' : 'Editar Autor'"></h1>
+    </header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">Inicio</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/libros">Libros</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/autores">Autores</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/usuarios">Usuarios</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/prestamos">Préstamos</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <form th:action="@{/autores}" th:object="${autor}" method="post">
+            <input type="hidden" th:if="${autor.id != null}" th:field="*{id}" />
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" th:field="*{nombre}" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="biografia">Biografía</label>
+                <textarea id="biografia" th:field="*{biografia}" class="form-control" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a href="/autores" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+    <footer class="footer mt-auto py-3 bg-dark text-white text-center">
+        <div class="container">
+            <span>© 2024 Biblioteca Digital</span>
+        </div>
+    </footer>
+</body>
+</html>

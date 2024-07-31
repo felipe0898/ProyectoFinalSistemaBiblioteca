@@ -1,0 +1,70 @@
+body {
+  background-color: #D2B48C; /* Color beige */
+  margin: 0;
+  padding-bottom: 60px; /* Espacio para el footer */
+}
+
+header {
+  background-color: #654321; /* Color café oscuro */
+  color: white;
+  padding: 12px 0;
+  text-align: left;
+  padding-left: 15px;
+}
+
+header h1 {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.container.content {
+  margin-top: 20px;
+}
+
+.table {
+  margin-bottom: 50px; /* Espacio para el footer */
+}
+
+footer {
+  background-color: #6f4e37; /* Color café */
+  color: white;
+  padding: 10px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+header h1 {
+  text-align: center;
+}
+
+.table th,
+.table td {
+  text-align: center;
+  vertical-align: middle;
+  font-weight: bold;
+}
+
+.table .font-weight-bold {
+  font-weight: bold;
+}
+
+
+.table tbody tr:nth-child(odd) {
+  background-color: #ab9889; /* Color café oscuro */
+  
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #b9ab9a; /* Color beige */
+}
+
+
+.navbar-center {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-group .btn {
+  margin-right: 10px; /* Añadir espacio entre los botones */
+}
